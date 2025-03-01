@@ -6,10 +6,8 @@
 <body>
     <h1>Recipe Book</h1>
     <ul>
-        {% for ingredient in ingredients %}
-            <li>{{ ingredient.name }}</li>
-            <li>{{ ingredient.quantity }}</li>
-            <br>
+        {% for ingredient in object.ingredients.all %}
+            <li>{{ingredient.quantity}} {{ ingredient.ingredient.name }}</li>
         {% endfor %}
     </ul>
 </body>
