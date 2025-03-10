@@ -1,2 +1,2 @@
-"# recipebook-iburahim-wahab" 
-use lab1 branch
+Iburahim, Abdul Wahab D.
+CSCI 40 Lab3

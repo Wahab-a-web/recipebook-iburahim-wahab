@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Recipe
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -14,6 +15,7 @@ class RecipesListView(ListView):
     template_name = 'recipe_book.html'
     
 
-class RecipeDetailView(DetailView):
+class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe
-    template_name = 'recipe.html'    
+    template_name = 'recipe.html'
+    redirect_field_name = 'recipes/list'

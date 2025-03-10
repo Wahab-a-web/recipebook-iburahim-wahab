@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initialize-scale=1.0">
+        <title>{% block title %}Recipe Book{% endblock %}</title>
+        {% block styles %} {% endblock %}
+    </head>
+    <body>
+        <h1>{% block header %}Recipe Book{% endblock %}</h1>
+        {% block content %}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    {{ error }}    
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+        {% endblock %}
+    </body>
+</html>
