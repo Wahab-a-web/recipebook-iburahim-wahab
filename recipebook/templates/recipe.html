@@ -10,11 +10,10 @@
         {% endfor %}
     </ul>
     <form action="POST" enctype="multipart/form-data"></form>
-    {% if object.task_image %}
-        <p>images yes</p>
-        <img src="{{ object.task_image.url }}" alt="">
+    {% if object.images.first %}
+        <img src="{{ object.images.first.recipe_image.url }}" alt="Recipe Image">
     {% endif %}
     
-    <img src="{% static 'img/porsche.jpg' %}" alt="no image">
+    
 
 {% endblock %}

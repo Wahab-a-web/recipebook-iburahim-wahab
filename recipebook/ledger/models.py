@@ -31,12 +31,12 @@ class Recipe(models.Model):
         return 'Recipe {}'.format(self.name)
 
 class RecipeImage(models.Model):
-    task_image = models.ImageField(upload_to='images/', null=False)
+    recipe_image = models.ImageField(upload_to='images/', null=False)
     description = models.CharField(max_length=255)
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='image'
+        related_name='images'
     )
 
 class RecipeIngredient(models.Model):
