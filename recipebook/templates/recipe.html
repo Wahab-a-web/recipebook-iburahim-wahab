@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <h4> Recipe Detail Page</h4>
     <p>Recipe made by {{ object.author }}</p>
@@ -8,4 +9,12 @@
             <li>{{ingredient.quantity}} {{ ingredient.ingredient.name }}</li>
         {% endfor %}
     </ul>
+    <form action="POST" enctype="multipart/form-data"></form>
+    {% if object.task_image %}
+        <p>images yes</p>
+        <img src="{{ object.task_image.url }}" alt="">
+    {% endif %}
+    
+    <img src="{% static 'img/porsche.jpg' %}" alt="no image">
+
 {% endblock %}

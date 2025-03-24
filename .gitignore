@@ -3,3 +3,5 @@ myenv/
 **/*.pyc
 **/__pycahce__
 db.sqlite3
+media/
+img/

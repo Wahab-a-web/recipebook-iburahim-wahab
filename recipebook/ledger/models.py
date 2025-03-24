@@ -19,6 +19,7 @@ class Recipe(models.Model):
     author = models.CharField(max_length=50, blank=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
+    
 
     def get_username(request):
         return request.user.username
@@ -29,6 +30,14 @@ class Recipe(models.Model):
     def __str__(self):
         return 'Recipe {}'.format(self.name)
 
+class RecipeImage(models.Model):
+    task_image = models.ImageField(upload_to='images/', null=False)
+    description = models.CharField(max_length=255)
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name='image'
+    )
 
 class RecipeIngredient(models.Model):
     quantity = models.CharField(max_length=100, default='0')
