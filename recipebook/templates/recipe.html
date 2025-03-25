@@ -11,9 +11,17 @@
         {% endfor %}
     </ul>
     <form action="POST" enctype="multipart/form-data"></form>
-    {% if object.images.first %}
-        <img src="{{ object.images.first.recipe_image.url }}" alt="{{ object.images.first.description }}">
+    <a href="{% url 'ledger:add-image' pk=object.pk %}">Add Image</a>
+    <br>
+    <br>
+    {% if object.images.all %}
+        {% for image in object.images.all %}
+            <img src="{{ image.recipe_image.url }}" alt="{{ image.description }}">
+        {% endfor %}
     {% endif %}
+    <br>
+    <br>
+    <a href="{% url 'ledger:recipes/list' %}">Back to Recipe List</a>
     
     
 

@@ -1,10 +1,11 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from .models import Recipe
+from .models import Recipe, RecipeImage
 from .forms import RecipeForm
+from django.urls import reverse
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -28,8 +29,6 @@ class RecipesListView(ListView):
             return self.render_to_response(context)
 
 
-
-
 class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe
     template_name = 'recipe.html'
@@ -42,8 +41,22 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     template_name = 'add_recipe.html'
 
 
-class RecipeUpdateView(UpdateView):
+class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     model = Recipe
     fields = '__all__'
     template_name = 'recipe.html'
     redirect_field_name = 'recipes/list'
+
+
+class ImageCreateView(LoginRequiredMixin, CreateView):
+    model = RecipeImage
+    fields = ['recipe_image', 'description']
+    template_name = 'add_image.html'
+
+    def form_valid(self, form):
+        recipe = get_object_or_404(Recipe, pk=self.kwargs['pk'])
+        form.instance.recipe = recipe
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('ledger:recipe-detail', kwargs={'pk': self.kwargs['pk']})
