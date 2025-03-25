@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
     <h4> Recipe Detail Page</h4>
-    <p>Recipe made by {{ object.author }}</p>
+    <p>Recipe {{ object.name }}</p>
+    <p>Made by {{ object.author }}</p>
     <p>Created on: {{ object.created_on }} | Updated on: {{ object.updated_on }}</p>
     <ul>
         {% for ingredient in object.ingredients.all %}
@@ -11,7 +12,7 @@
     </ul>
     <form action="POST" enctype="multipart/form-data"></form>
     {% if object.images.first %}
-        <img src="{{ object.images.first.recipe_image.url }}" alt="Recipe Image">
+        <img src="{{ object.images.first.recipe_image.url }}" alt="{{ object.images.first.description }}">
     {% endif %}
     
     

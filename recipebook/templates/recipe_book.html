@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h4> Recipe List Page</h4>
+    <a href="{% url 'ledger:recipe-add' %}">Create New Recipe</a>
     <ul>
         {% for recipe in object_list %}
             <li><a href="{{ recipe.get_absolute_url }}">Recipe {{ recipe.name }}</a></li>
