@@ -1,7 +1,8 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import index, ImageCreateView, RecipesListView, RecipeCreateView, RecipeUpdateView
+from .views import index, ImageCreateView, RecipesListView
+from .views import RecipeCreateView, RecipeUpdateView
 
 urlpatterns = [
     path('', index, name='index'),

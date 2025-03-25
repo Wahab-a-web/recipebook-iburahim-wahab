@@ -59,8 +59,11 @@ class ImageCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('ledger:recipe-detail', kwargs={'pk': self.kwargs['pk']})
-    
+        return reverse_lazy(
+            'ledger:recipe-detail',
+            kwargs={'pk': self.kwargs['pk']}
+        )
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
